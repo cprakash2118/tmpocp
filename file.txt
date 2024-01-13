@@ -1,0 +1,30 @@
+[student@workstation ~]$ ssh root@utility 
+Warning: Permanently added 'utility,172.25.250.253' (ECDSA) to the list of known hosts.
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+Last login: Tue Nov 14 10:38:25 2023
+[root@utility ~]# cd /home/lab/ocp4/auth/
+[root@utility auth]# pwd
+/home/lab/ocp4/auth
+[root@utility auth]# ls -l
+total 28
+-rw-r-----. 1 lab lab    23 Sep 22  2022 kubeadmin-password
+-rw-r-----. 1 lab lab  8474 Sep 22  2022 kubeconfig
+-rw-rw-r--. 1 lab lab 12114 Sep 22  2022 kubeconfig-orig
+[root@utility auth]# 
+[root@utility auth]# scp -r kube* student@workstation:~/
+The authenticity of host 'workstation (172.25.250.9)' can't be established.
+ECDSA key fingerprint is SHA256:AQhX9q+SgGRLr60BhFdQUIa0HHd7xhDdm6PS6zMrSEw.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'workstation,172.25.250.9' (ECDSA) to the list of known hosts.
+student@workstation's password: 
+kubeadmin-password                                                                      100%   23     7.4KB/s   00:00    
+kubeconfig                                                                              100% 8474    15.4MB/s   00:00    
+kubeconfig-orig                                                                         100%   12KB   7.2MB/s   00:00    
+[root@utility auth]# exit
+logout
+Connection to utility closed.
+[student@workstation ~]$ 
+
