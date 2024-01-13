@@ -39,3 +39,69 @@ error: Missing or incomplete configuration info.  Please point to an existing, c
 To view or setup config directly use the 'config' command.
 [student@workstation ~]$ 
 
+##########################################################################################################################################
+[student@workstation ~]$ oc whoami 
+error: Missing or incomplete configuration info.  Please point to an existing, complete config file:
+
+
+  1. Via the command-line flag --kubeconfig
+  2. Via the KUBECONFIG environment variable
+  3. In your home directory as ~/.kube/config
+
+To view or setup config directly use the 'config' command.
+[student@workstation ~]$ 
+[student@workstation ~]$ 
+[student@workstation ~]$ oc get clusterversion --kubeconfig kubeconfig
+NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
+version   4.10.20   True        False         477d    Cluster version is 4.10.20
+[student@workstation ~]$ 
+[student@workstation ~]$ env | grep KUBECONFIG 
+[student@workstation ~]$ export KUBECONFIG=/home/student/kubeconfig
+[student@workstation ~]$ env | grep KUBECONFIG 
+KUBECONFIG=/home/student/kubeconfig
+[student@workstation ~]$ oc get clusterversion
+NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
+version   4.10.20   True        False         477d    Cluster version is 4.10.20
+[student@workstation ~]$ 
+[student@workstation ~]$ unset KUBECONFIG 
+[student@workstation ~]$ env | grep KUBECONFIG 
+[student@workstation ~]$ oc get clusterversion
+error: Missing or incomplete configuration info.  Please point to an existing, complete config file:
+
+
+  1. Via the command-line flag --kubeconfig
+  2. Via the KUBECONFIG environment variable
+  3. In your home directory as ~/.kube/config
+
+To view or setup config directly use the 'config' command.
+[student@workstation ~]$ 
+[student@workstation ~]$ ls -l kubeconfig 
+-rw-r-----. 1 student student 8474 Jan 13 04:42 kubeconfig
+[student@workstation ~]$ ls -l .kube/
+total 0
+drwxr-x---. 4 student student 35 Jan 13 05:38 cache
+[student@workstation ~]$ cp -rpv kubeconfig ~/.kube/config
+'kubeconfig' -> '/home/student/.kube/config'
+[student@workstation ~]$ ls -l .kube/
+total 12
+drwxr-x---. 4 student student   35 Jan 13 05:38 cache
+-rw-r-----. 1 student student 8474 Jan 13 04:42 config
+[student@workstation ~]$ oc get clusterversion
+NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
+version   4.10.20   True        False         477d    Cluster version is 4.10.20
+[student@workstation ~]$ 
+[student@workstation ~]$ mv .kube/config /tmp/
+[student@workstation ~]$ ls -l .kube/
+total 0
+drwxr-x---. 4 student student 35 Jan 13 05:38 cache
+[student@workstation ~]$ oc get clusterversion
+error: Missing or incomplete configuration info.  Please point to an existing, complete config file:
+
+
+  1. Via the command-line flag --kubeconfig
+  2. Via the KUBECONFIG environment variable
+  3. In your home directory as ~/.kube/config
+
+To view or setup config directly use the 'config' command.
+[student@workstation ~]$ 
+
