@@ -105,3 +105,37 @@ error: Missing or incomplete configuration info.  Please point to an existing, c
 To view or setup config directly use the 'config' command.
 [student@workstation ~]$ 
 
+####################################################################################
+[student@workstation ~]$ 
+[student@workstation ~]$ cat kubeconfig | grep server
+    server: https://api.ocp4.example.com:6443
+[student@workstation ~]$ cat kubeadmin-password 
+HHTKq-zLFIR-NDeUp-zP5wi[student@workstation ~]$ 
+[student@workstation ~]$ 
+[student@workstation ~]$ 
+[student@workstation ~]$ oc login -u kubeadmin -p HHTKq-zLFIR-NDeUp-zP5wi https://api.ocp4.example.com:6443
+Login successful.
+
+You have access to 66 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "default".
+Welcome! See 'oc help' to get started.
+[student@workstation ~]$ 
+[student@workstation ~]$ 
+[student@workstation ~]$ oc whoami 
+kube:admin
+[student@workstation ~]$ oc whoami -t 
+sha256~9CwvNN67obfcYzyO044MXJCjSScSLm-PC1C3ldWrfHE
+[student@workstation ~]$ 
+[student@workstation ~]$ oc whoami --show-console 
+https://console-openshift-console.apps.ocp4.example.com
+[student@workstation ~]$ oc get clusterversion 
+NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
+version   4.10.20   True        False         477d    Cluster version is 4.10.20
+[student@workstation ~]$ 
+[student@workstation ~]$ oc version 
+Client Version: 4.10.20
+Server Version: 4.10.20
+Kubernetes Version: v1.23.5+3afdacb
+[student@workstation ~]$ 
+
